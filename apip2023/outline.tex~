@@ -1,0 +1,16 @@
+\documentclass{revtex4}
+
+\begin{document}
+
+\author {M. F. Gu}
+
+\affiliation{Prism Computational Sciences & Space Science Laboratory, UC Berkeley}
+
+\title{Tutorial: FAC for Intermediate Users}
+
+\begin{abstract}
+In this tutorial, we will discuss pratical usage of the Flexible Atomic Code (FAC) for intermediate users. 
+\end{abstract}
+
+
+\end{document}
