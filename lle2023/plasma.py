@@ -74,7 +74,9 @@ if id == ' ' or id == 'None' or id == 'none':
     id = ''
 
 if opts.zp <= 0:
-    zp = z-n+1
+    zp = z-n
+    if zp < 1:
+        zp = 1
 else:
     zp = opts.zp
     
@@ -302,6 +304,12 @@ MemENTable(p+'b.en')
 PrintTable(p+'b.en', p+'a.en')
 
 BasisTable(p+'a.bs')
+
+OrbitalStats(p+'b.rp', nmax)
+WaveFuncTable(p+'a.w1s', 1, -1, 0)
+WaveFuncTable(p+'a.w2s', 2, -1, 0)
+WaveFuncTable(p+'a.w2pm', 2, 1, 0)
+WaveFuncTable(p+'a.w2pp', 2, -2, 0)
 
 if i0 < 0 or i1 < 0:
     for n0 in range(nmin, nmax+1):
