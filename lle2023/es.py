@@ -9,7 +9,7 @@ k1 = int(sys.argv[3])
 
 a = fac.ATOMICSYMBOL[z]
 
-ds = linspace(1,10,10)
+ds = linspace(0.1**(1/3), 10**(1/3), 15)**3.0 #electron density grid in 10^24 cm^-3
 
 for k in range(k0, k1+1):
     d0 = rfac.FLEV('%s%02da.en'%(a,k))
@@ -30,7 +30,7 @@ for k in range(k0, k1+1):
     e0 = sum(r0[5][w0]*r0[4][w0])/sum(r0[5][w0])
     er[1,:] = e0
     for i in range(len(ds)):
-        r = rfac.load_fac('%s%02dm2d%02da.tr'%(a,k,i))
+        r = rfac.load_fac('%s%02dm0d%02da.tr'%(a,k,i))
         w = where((r[2]<i2[0])&(r[0]>=i2[0])&(r[0]<=i2[-1]))[0]
         e = sum(r[5][w]*r[4][w])/sum(r[5][w])
         de[i] = e-e0

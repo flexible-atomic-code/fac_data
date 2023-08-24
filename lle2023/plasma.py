@@ -69,14 +69,14 @@ id = opts.id
 i0 = opts.i0
 i1 = opts.i1
 bms = opts.bms
-                    
+
+donemsg = 'done for %d %d %d %g %g'%(z, n, m, d, t)
+
 if id == ' ' or id == 'None' or id == 'none':
     id = ''
 
 if opts.zp <= 0:
-    zp = z-n
-    if zp < 1:
-        zp = 1
+    zp = z-n+1
 else:
     zp = opts.zp
     
@@ -162,6 +162,7 @@ if opts.ws:
     print(w/sum(w))
     print(wr)
     print('%d %10.3E %10.3E %10.3E %10.3E %10.3E %10.3E %10.3E %10.3E'%(m, d, t, x, wz, wx0, wx, x-x0, 1e8*(1/x-1/x0)))
+    WallTime(donemsg)
     exit()
 
 if opts.np > 1:
@@ -180,7 +181,10 @@ m: model choice.
 """
 
 #SetOption('orbital:relativistic_fermi', 1)
-SetOption('orbital:sp_print', 3)
+if m == 2:
+    SetOption('orbital:sp_print', 3)
+else:
+    SetOption('orbital:sp_print', -1)
 SetOption('orbital:sp_mode', 2)
 SetOption('orbital:sp_ofn', 'spn.txt')
 SetOption('orbital:fermi_rmf', 'fermi.txt')
@@ -306,10 +310,6 @@ PrintTable(p+'b.en', p+'a.en')
 BasisTable(p+'a.bs')
 
 OrbitalStats(p+'b.rp', nmax)
-WaveFuncTable(p+'a.w1s', 1, -1, 0)
-WaveFuncTable(p+'a.w2s', 2, -1, 0)
-WaveFuncTable(p+'a.w2pm', 2, 1, 0)
-WaveFuncTable(p+'a.w2pp', 2, -2, 0)
 
 if i0 < 0 or i1 < 0:
     for n0 in range(nmin, nmax+1):
@@ -345,4 +345,6 @@ if m >= 0:
         PrintTable(p+'b.ci', p+'a.ci')
 if opts.np > 1:
     FinalizeMPI()
+
+WallTime(donemsg)
 #CloseSFAC()
