@@ -5,7 +5,7 @@ clf()
 eb = []
 for i in range(3,10):
     d = loadtxt('Cr%02da.es'%i, unpack=1)
-    plot(d[0], -d[3], marker='o', label='%s-like'%fac.ATOMICSYMBOL[i])
+    loglog(d[0], -d[3], marker='o', label='%s-like'%fac.ATOMICSYMBOL[i])
     x = loadtxt('Cr%02db.rp'%i, usecols=6)
     eb.append(x)
     for j in range(10):

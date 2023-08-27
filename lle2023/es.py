@@ -9,7 +9,7 @@ k1 = int(sys.argv[3])
 
 a = fac.ATOMICSYMBOL[z]
 
-ds = linspace(0.1**(1/3), 10**(1/3), 15)**3.0 #electron density grid in 10^24 cm^-3
+ds = exp(linspace(log(0.05), log(50), 11)) #electron density grid in 10^24 cm^-3
 
 for k in range(k0, k1+1):
     d0 = rfac.FLEV('%s%02da.en'%(a,k))
